@@ -31,3 +31,33 @@ class Solution {
          return result;
      }
  };
+ 
+/*结果肯定没有问题，但是结局肯定也是在意料之中的，那就是当输入的数组很大的时候，耗费的时间就会很长，在提交代码的时候，leetcode oj会报time limit exceeded这样的错误。*/
+
+/*从上面的两层循环来说，由于数组无序实际上没有可优化的点了，必须要转变思维观念来解决，我个人认为除去优化解决时间复杂度的一个很明显的替代方法那就是以空间换时间，
+
+对于查找这类问题来说，想减少时间复杂度的一个好办法那就是建立hash表，在这里使用map结构来完成，代码如下：*/
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &numbers, int target) {
+        vector<int> result;
+        map<int, int> m;
+        if (numbers.size() < 2)
+            return result;
+        for (int i = 0; i < numbers.size(); i++)
+            m[numbers[i]] = i;
+
+        map<int, int>::iterator it;
+        for (int i = 0; i < numbers.size(); i++) {
+            if ((it = m.find(target - numbers[i])) != m.end())
+            {
+                if (i == it->second) continue;
+                result.push_back(i+1);
+                result.push_back(it->second+1);
+                return result;
+            }
+        }
+        return result;
+    }
+};
