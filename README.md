@@ -1,3 +1,3 @@
-#Two Sum
+Two Sum
 
 leetcode 第一题
