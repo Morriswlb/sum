@@ -1,3 +1,3 @@
-# sum
+#Two Sum
 
-leet的sum系列问题
+leetcode 第一题
